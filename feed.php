@@ -20,7 +20,7 @@
 	}
 	else {
 		$email = $_COOKIE["user"];
-		$email = $_COOKIE["pw"];
+		$pw = $_COOKIE["pw"];
 	}
 
 	$sql = "SELECT COUNT(ID)
@@ -50,13 +50,8 @@
 		}
 	}
 	else {
-		$sql = "INSERT INTO f18_nfuller.USERS(Email,Password,ID)
-		SELECT ?, ?, COUNT(ID)
-		FROM f18_nfuller.USERS";
-		$stmt = $conn->prepare($sql);
-		$stmt->bind_param("ss", $email, $pw);
-		$result = $stmt->execute();	
-		$stmt->close();
+		header('Location: register.php?auth=NULL');
+		exit;
 	}
 ?>
 <!DOCTYPE html>
