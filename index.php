@@ -5,7 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-<<<<<<< HEAD
 <!--TODO: Navbar-->
 <!-- TODO: feed tags-->
 	<?php
@@ -14,11 +13,6 @@
 			setcookie("badLogin", false, time() + 3600);
 		}
 	?>
-	<form action="feed.php" method="post">
-			Email:<input name="email" type="email">
-			Password:<input name="pass" type="password">
-			<input type="submit">
-	</form>
 <div id="wrapper">
         <header>
             <h1>
@@ -33,6 +27,6 @@
             </form>
         </div>
 	</div>
-	<?php include 'footer.php';?>
+	<!--<?php include 'footer.php';?>-->
 </body>
 </html>
