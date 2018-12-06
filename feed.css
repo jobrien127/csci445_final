@@ -90,3 +90,12 @@ margin-left: 1em;
     height: 20%;
     width: 80%;
 }
+
+#changePassword {
+    color: white;
+    background-color: #4b5d68;
+    margin-left: 80%;
+    width: 20%;
+    margin-top: -6em;
+    margin-bottom: 1em; 
+}
