@@ -1,0 +1,10 @@
+footer {
+    background-color: #4b5d68;
+}
+
+.badge{
+    width: 4em;
+    height: 2em;
+    margin-left: 45%;
+    margin-top: .5em;
+}

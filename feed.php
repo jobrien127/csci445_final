@@ -7,31 +7,15 @@
         </script>
     </head>
     <body>
-        <?php
-        // TODO: database access vars
-        
-        // TODO: create connection
-
-        // TODO: create query for user data
-
-        // TODO: set vars
-
-        // TODO: create query for post data
-       
-        // TODO: set vars (username, timestamp, postString)
-        ?>
         <div id="wrapper">
             <header>
                 <h1>The Feed</h1>
-                <p id="displayUsername">Username:</p> 
+                <p id="displayUsername">Username: <?php $_REQUEST['email']?></p> 
             </header>
-            <nav> 
-                <button id="navButton">profile</button> <!--NOTE: may be a better idea to use link here?-->
-                <button id="navButton">logout</button>
-            </nav>
+            <?php include 'header.php';?>
             <div id="content">
                 <div id="post">
-                  <a href="" id="userlink" >username</a><!--TODO: make this a link insead-->
+                  <a href="profile.php" id="userlink" >username</a><!--TODO: make this a link insead-->
                    <p id="timestamp">Posted on mm//dd//yyyy at 00:00:00</p>
                    <p id="postP"> This is an example post</p>
                 </div>
@@ -40,6 +24,7 @@
                     <input id="postButton"type="submit" value="Post">
                 </form>
             </div>
+            <?php include 'footer.php' ?>
         </div>
     </body>
 </html>

@@ -23,6 +23,8 @@
 
 textarea {
     max-width: 80%;
+    width: 4em;
+    height: 2em;
     margin-left: 16%;
     margin-top: 2em;
     background-color: black;
@@ -31,15 +33,6 @@ textarea {
     border-color: blanchedalmond;
     border-width: 1em;
     font-size: 12px;
-}
-
-#navButton {
-    background-color: #4b5d68;
-    color:  #7cc7f4;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.5em;
-    margin-left: 3em;
-    margin-top: 0em;
 }
 
 h1 {
