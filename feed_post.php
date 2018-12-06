@@ -58,9 +58,11 @@
 	?>
 	
 	<body>
-		<section>
-			Post Successfully Created!
-			<a href="feed.php">Return to Feed</a>
-		</section>
+		<div id='wrapper'>
+			<section id="postReceipt">
+				Post Successfully Created!
+				<a href="feed.php">Return to Feed</a>
+			</section>
+		</div>
 	</body>
 </html>
