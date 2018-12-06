@@ -51,11 +51,11 @@
 				// invalid password handling
 			}
 			else {
-				$sql = "INSERT INTO f18_nfuller.POSTS(User_ID, Content, TStamp, DStamp, ID)
-				SELECT ?, ?, ?, ?, COUNT(ID)
-				FROM f18_nfuller.USERS";
+				$sql = "INSERT INTO f18_nfuller.POSTS(User_ID, Content, TStamp, ID)
+				SELECT ?, ?, ?, COUNT(ID)
+				FROM f18_nfuller.POSTS";
 				$stmt = $conn->prepare($sql);
-				$stmt->bind_param("isss", $id, $p_content, $tstamp, $dstamp);
+				$stmt->bind_param("iss", $id, $p_content, $tstamp);
 				$result = $stmt->execute();	
 				$stmt->close();
 			}
