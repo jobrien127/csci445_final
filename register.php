@@ -21,8 +21,14 @@
 			}
 			
 			$auth = $_GET["user"];
+			$reset = $_POST["forgot"];
 			
-			$email = $_COOKIE["user"];
+			if($reset == "YES") {
+				$email = $_POST["email"];
+			}
+			else {
+				$email = $_COOKIE["user"];
+			}
 			$pw = $_COOKIE["pw"];
 			$msg = "You have attempted to register a Social Harmony and Interaction Table account with this email address.\n
 					To activate this account, please click the link attached:\n
@@ -32,11 +38,28 @@
 	<body>
 		<section>
 			<?php
-				if($auth === NULL) {
+				if($auth === NULL && $reset != "YES") {
 					echo "An Email has been sent to the provided address. Click the link in the email to register your account.";
 					
-					mail($email, "S.H.I.T. Account Activation", $msg, $headers);
+					mail($email, "S.H.I.T. Account Activation", $msg);
 					
+				}
+				else if($reset == "YES") {
+					echo "An Email with a new password has been sent to the provided email address.";
+					
+					$newpass = rand();
+					
+					$newmsg = "You have requested a password reset for your Social Harmony and Interaction Table account with this email address.\n
+							Your new password is as follows:\n".(string)$newpass;
+					$sql = "UPDATE f18_nfuller.USERS
+					SET Password = ?
+					WHERE Email = ?";
+					$stmt = $conn->prepare($sql);
+					$stmt->bind_param("ss", $newpass, $email);
+					$result = $stmt->execute();	
+					$stmt->close();
+					
+					mail($email, "S.H.I.T. Password Reset", $newmsg);
 				}
 				else {
 					if($auth == $email) {

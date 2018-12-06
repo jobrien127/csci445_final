@@ -25,8 +25,14 @@
                     Password:<input name="pass" type="password"><br>
                     <input type="submit">
             </form>
+			<form action="register.php" method="post">
+					Forgot Password?<br>
+                    Email:<input name="email" type="email"><br>
+					<input name="forgot" type="text" hidden value="YES">
+					<input type="submit">
+			</form>
         </div>
 	</div>
-	<!--<?php include 'footer.php';?>-->
+	<?php include 'footer.php';?>
 </body>
 </html>
