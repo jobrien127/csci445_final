@@ -76,7 +76,6 @@
 					<input name="email" type="email" hidden value=<?php echo $email?>>
 					<input name="pass" type="password" hidden value=<?php echo $pw?>>
 					<input name="time" type="text" hidden value=<?php echo time() ?>>
-					<input name="date" type="text" hidden value=<?php echo date() ?>>
                     <input id="postButton"type="submit" value="Post">
                 </form>
             </div>
