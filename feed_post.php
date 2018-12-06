@@ -25,8 +25,6 @@
 			$tstamp = (string)$_POST["time"];
 			$dstamp = (string)$_POST["date"];
 			
-			$DEBUG = "Working";
-			
 			$sql = "SELECT COUNT(ID)
 			FROM f18_nfuller.USERS U
 			WHERE U.Email = ? AND U.Password = ?";
@@ -47,7 +45,6 @@
 			$stmt->fetch();
 			$stmt->close();
 			if($userCount === 0) {
-				$DEBUG = "Failed";
 				// invalid password handling
 			}
 			else {
@@ -63,7 +60,12 @@
 	
 	<body>
 		<section>
-			Post Successfully Created! <?php echo $DEBUG ?>
+			Post Successfully Created!
+			<form action="feed.php" method="post">
+				<input name="email" type="email" hidden value=<?php echo $email?>>
+				<input name="pass" type="password" hidden value=<?php echo $pw?>>
+				<input type="submit" value="Return to Feed">
+			</form>
 		</section>
 	</body>
 </html>
