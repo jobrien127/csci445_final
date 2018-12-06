@@ -73,6 +73,13 @@
                 <h1>The Feed</h1>
                 <p id="displayUsername">Username: <?php echo $_COOKIE["user"] ?></p> 
             </header>
+            <div id="changePassword">
+                    <form action="" method="post">
+                       New password: <input name="newPassword" type="text"><br>
+                       Confirm new password: <input name="confirmNewPassword" type="text">
+                       <input name="confirmButton" type="submit" value="Change"> 
+                    </form>
+            </div>
             <?php include 'header.php';?>
             <div id="content">
                 <div id="post">
