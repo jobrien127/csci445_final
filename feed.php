@@ -43,7 +43,7 @@
 				$stmt->fetch();
 				$stmt->close();
 				if($userCount == 0) {
-					// wrong password
+					// invalid password handling
 				}
 			}
 			else {
@@ -72,7 +72,11 @@
                    <p id="postP"> This is an example post</p>
                 </div>
                 <form action="feed_post.php" method="post"><!--TODO: need to set attributes-->
-                    <textarea rows="10" cols = "100" placeholder="Post here..."></textarea><!--TODO: need to write js to size the textbox-->
+                    <textarea name="content" rows="10" cols = "100" placeholder="Post here..."></textarea><!--TODO: need to write js to size the textbox-->
+					<input name="email" type="email" hidden value=<?php echo $email?>>
+					<input name="pass" type="password" hidden value=<?php echo $pw?>>
+					<input name="time" type="text" hidden value=<?php echo time() ?>>
+					<input name="date" type="text" hidden value=<?php echo date() ?>>
                     <input id="postButton"type="submit" value="Post">
                 </form>
             </div>
