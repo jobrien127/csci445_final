@@ -5,6 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
+<!--TODO: Navbar-->
+<!-- TODO: feed tags-->
+	<?php
+		if($_COOKIE["badLogin"]) {
+			echo "Incorrect Username or Password";
+			setcookie("badLogin", false, time() + 3600);
+		}
+	?>
 <div id="wrapper">
         <header>
             <h1>
@@ -19,6 +27,6 @@
             </form>
         </div>
 	</div>
-	<?php include 'footer.php';?>
+	<!--<?php include 'footer.php';?>-->
 </body>
 </html>
