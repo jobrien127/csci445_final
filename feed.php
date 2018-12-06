@@ -8,17 +8,21 @@
     </head>
     <body>
         <?php
-        // TODO: database access vars
-        
-        // TODO: create connection
+			$currPage = "php_form";
 
-        // TODO: create query for user data
+			include '../templateHeader.php';
 
-        // TODO: set vars
+			$servername = "localhost";
+			$username = "nfuller";
+			$password = "UGCIQIMA";
 
-        // TODO: create query for post data
-       
-        // TODO: set vars (username, timestamp, postString)
+			// Create connection
+			$conn = new mysqli($servername, $username, $password);
+
+			// Check connection
+			if ($conn->connect_error) {
+				die("Connection failed: " . $conn->connect_error);
+			}
         ?>
         <div id="wrapper">
             <header>
@@ -35,7 +39,7 @@
                    <p id="timestamp">Posted on mm//dd//yyyy at 00:00:00</p>
                    <p id="postP"> This is an example post</p>
                 </div>
-                <form><!--TODO: need to set attributes-->
+                <form action="feed_post.php" method="post"><!--TODO: need to set attributes-->
                     <textarea rows="10" cols = "100" placeholder="Post here..."></textarea><!--TODO: need to write js to size the textbox-->
                     <input id="postButton"type="submit" value="Post">
                 </form>
