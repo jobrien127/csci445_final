@@ -6,13 +6,8 @@
         <script>
         </script>
     </head>
-    <body>
-        <?php
-			$currPage = "php_form";
-
-			include '../templateHeader.php';
-
-			$servername = "localhost";
+	<?php
+	$servername = "localhost";
 			$username = "nfuller";
 			$password = "UGCIQIMA";
 
@@ -23,11 +18,48 @@
 			if ($conn->connect_error) {
 				die("Connection failed: " . $conn->connect_error);
 			}
+			$email = (string)$_POST["email"];
+			$pw = (string)$_POST["pass"];
+	?>
+    <body>
+        <?php			
+			$sql = "SELECT COUNT(ID)
+			FROM f18_nfuller.USERS U
+			WHERE U.Email = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("s", $email);
+			$stmt->bind_result($userCount);
+			$stmt->execute();
+			$stmt->fetch();
+			$stmt->close();
+			if($userCount != 0) {
+				$sql = "SELECT COUNT(ID)
+				FROM f18_nfuller.USERS U
+				WHERE U.Email = ? AND U.Password = ?";
+				$stmt = $conn->prepare($sql);
+				$stmt->bind_param("ss", $email, $pw);
+				$stmt->bind_result($userCount);
+				$stmt->execute();
+				$stmt->fetch();
+				$stmt->close();
+				if($userCount == 0) {
+					// wrong password
+				}
+			}
+			else {
+				$sql = "INSERT INTO f18_nfuller.USERS(Email,Password,ID)
+				SELECT ?, ?, COUNT(ID)
+				FROM f18_nfuller.USERS";
+				$stmt = $conn->prepare($sql);
+				$stmt->bind_param("ss", $email, $pw);
+				$result = $stmt->execute();	
+				$stmt->close();
+			}
         ?>
         <div id="wrapper">
             <header>
                 <h1>The Feed</h1>
-                <p id="displayUsername">Username:</p> 
+                <p id="displayUsername">Username: <?php echo $email ?></p> 
             </header>
             <nav> 
                 <button id="navButton">profile</button> <!--NOTE: may be a better idea to use link here?-->

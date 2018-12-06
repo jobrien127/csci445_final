@@ -12,6 +12,7 @@
 	<form action="feed.php" method="post">
 			Email:<input name="email" type="email">
 			Password:<input name="pass" type="password">
+			<input type="submit">
 	</form>
 </body>
 </html>
