@@ -1,4 +1,6 @@
 #navButton {
+	display: block;
+	width: 75%;
     background-color: #4b5d68;
     color:  #7cc7f4;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

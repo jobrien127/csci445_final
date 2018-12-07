@@ -1,3 +1,27 @@
+<?php
+	$servername = "localhost";
+	$username = "nfuller";
+	$password = "UGCIQIMA";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password);
+
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	$email = (string)$_COOKIE["user"];
+	$pw = (string)$_COOKIE["pw"];
+	$p_content = (string)$_POST["content"];
+	$tstamp = (string)$_POST["time"];
+	
+	if($email == NULL || $pw == NULL) {
+		header('Location: register.php?user=logon');
+		exit;
+	}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,21 +32,6 @@
     </head>
 
 	<?php
-			$servername = "localhost";
-			$username = "nfuller";
-			$password = "UGCIQIMA";
-
-			// Create connection
-			$conn = new mysqli($servername, $username, $password);
-
-			// Check connection
-			if ($conn->connect_error) {
-				die("Connection failed: " . $conn->connect_error);
-			}
-			$email = (string)$_COOKIE["user"];
-			$pw = (string)$_COOKIE["pw"];
-			$p_content = (string)$_POST["content"];
-			$tstamp = (string)$_POST["time"];
 			
 			$sql = "SELECT COUNT(ID)
 			FROM f18_nfuller.USERS U

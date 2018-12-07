@@ -21,6 +21,24 @@
 	else {
 		$email = $_COOKIE["user"];
 		$pw = $_COOKIE["pw"];
+		
+		if($_POST["confirmNewPassword"] != NULL) {
+			$newpass = (string)$_POST["confirmNewPassword"];
+			setcookie("pw", $newpass, time() + 3600);
+			
+			$sql = "UPDATE f18_nfuller.USERS
+			SET Password = ?
+			WHERE Email = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("ss", $newpass, $email);
+			$result = $stmt->execute();	
+			$stmt->close();
+		}
+		
+		if($email == NULL || $pw == NULL) {
+			header('Location: register.php?user=logon');
+			exit;
+		}
 	}
 
 	$sql = "SELECT COUNT(ID)
@@ -66,10 +84,10 @@
         <div id="wrapper">
             <header>
                 <h1>The Feed</h1>
-                <p id="displayUsername">Username: <?php echo $_COOKIE["user"] ?></p> 
+                <p id="displayUsername">Currently Logged In As: <?php echo $_COOKIE["user"] ?></p> 
             </header>
             <div id="changePassword">
-                    <form action="" method="post">
+                    <form action="feed.php" method="post">
                        New password: <input name="newPassword" type="text"><br>
                        Confirm new password: <input name="confirmNewPassword" type="text">
                        <input name="confirmButton" type="submit" value="Change"> 
@@ -77,11 +95,23 @@
             </div>
             <?php include 'header.php';?>
             <div id="content">
-                <div id="post">
-                  <a href="profile.php" id="userlink" >username</a><!--TODO: make this a link insead-->
-                   <p id="timestamp">Posted on mm//dd//yyyy at 00:00:00</p>
-                   <p id="postP"> This is an example post</p>
-                </div>
+					<?php
+						$sql = mysqli_query($conn, "SELECT U.Email, P.Content, P.TStamp
+						FROM f18_nfuller.USERS U, f18_nfuller.POSTS P
+						WHERE U.ID = P.User_ID
+						ORDER BY P.TStamp DESC
+						LIMIT 100")
+						   or die (mysqli_error($conn));
+
+						while ($row = mysqli_fetch_array($sql))
+						{
+							echo "
+                <div id='post'>
+				<p> At " . date("h:i:sa on Y/m/d GMT", $row['TStamp']) . ", " . $row['Email'] . " posted:<br />" . $row['Content'] . "<br/>
+				</p>
+                </div>";
+						}
+					?>
                 <form action="feed_post.php" method="post"><!--TODO: need to set attributes-->
                     <textarea name="content" rows="10" cols = "100" placeholder="Post here..."></textarea><!--TODO: need to write js to size the textbox-->
 					<input name="time" type="text" hidden value=<?php echo time() ?>>

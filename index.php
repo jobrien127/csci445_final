@@ -12,6 +12,11 @@
 			echo "Incorrect Username or Password";
 			setcookie("badLogin", false, time() + 3600);
 		}
+		
+		if($_GET["act"] == "logout") {
+			setcookie("user", "", time() - 3600);
+			setcookie("pw", "", time() - 3600);
+		}
 	?>
 <div id="wrapper">
         <header>

@@ -73,6 +73,9 @@
 						
 						echo "Thank you for authorizing your account.";
 					}
+					else if ($auth == "logon") {
+						echo "You are not currently logged in. Please log in and try again.";
+					}
 					else {
 						echo "Looks like something went wrong. Please try registering again and another email will be sent to you.";
 					}
